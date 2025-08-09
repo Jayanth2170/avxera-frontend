@@ -36,12 +36,6 @@ const DigitalTransformationPage = () => {
           Transform your business for the digital age with Avexra's strategic consulting and implementation services.
         </p>
 
-        <img
-          src="/placeholder.svg?height=400&width=800"
-          alt="Digital Transformation"
-          className="w-full h-auto rounded-xl shadow-lg mb-8 sm:mb-12"
-        />
-
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
           Our Approach
         </h2>

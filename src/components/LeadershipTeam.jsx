@@ -3,8 +3,6 @@
 import React from "react";
 import { Mail, Linkedin } from "lucide-react";
 import { FaTwitter } from "react-icons/fa";
-import { BsTwitter } from "react-icons/bs";
-
 
 const LeaderCard = ({ leader, index }) => {
   return (
@@ -42,14 +40,13 @@ const LeaderCard = ({ leader, index }) => {
           <Linkedin size={20} />
         </a>
         <a
-  href={leader.twitter}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-gray-600 hover:text-emerald-600 transition-colors duration-200"
->
-  <BsTwitter size={20} />
-</a>
-
+          href={leader.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-emerald-600 transition-colors duration-200"
+        >
+          <FaTwitter size={20} />
+        </a>
       </div>
     </div>
   );
