@@ -20,6 +20,14 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
       if (firstInput) {
         firstInput.focus()
       }
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    // Clean up on unmount
+    return () => {
+      document.body.style.overflow = ""
     }
   }, [isOpen])
 
@@ -31,11 +39,9 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("Application Submitted:", formData)
-    // Simulate a brief processing time
     setTimeout(() => {
-      onClose() // Close the form after submission
+      onClose()
       setFormData({
-        // Reset form data
         name: "",
         age: "",
         gender: "",
@@ -48,18 +54,20 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center animate-in fade-in duration-300">
+    <div
+      className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 animate-in fade-in duration-300"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-form-title"
+    >
       <div
         ref={formRef}
-        className="relative bg-white/95 backdrop-blur-lg rounded-2xl p-8 md:p-10 shadow-2xl shadow-emerald-500/10 w-full max-w-md mx-4 animate-in zoom-in-90 duration-300 ease-out"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="application-form-title"
+        className="relative bg-white/95 backdrop-blur-lg rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl shadow-emerald-500/10 w-full max-w-md max-h-[90vh] overflow-y-auto animate-in zoom-in-90 duration-300 ease-out"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500"
           aria-label="Close application form"
         >
           <X size={20} />
@@ -68,7 +76,9 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
         <h2 id="application-form-title" className="text-3xl font-bold text-gray-900 mb-6 text-center">
           Join Our Team
         </h2>
-        <p className="text-gray-600 text-center mb-8">Fill out your details to apply for a position.</p>
+        <p className="text-gray-600 text-center mb-8">
+          Fill out your details to apply for a position.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
@@ -84,6 +94,7 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               onChange={handleInputChange}
               required
               className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200"
+              autoComplete="name"
             />
           </div>
 
@@ -102,6 +113,8 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               min="18"
               max="99"
               className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200"
+              inputMode="numeric"
+              autoComplete="off"
             />
           </div>
 
@@ -115,7 +128,7 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               value={formData.gender}
               onChange={handleInputChange}
               required
-              className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200 appearance-none cursor-pointer"
+              className="w-full pl-12 pr-8 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200 appearance-none cursor-pointer"
             >
               <option value="" disabled>
                 Select Gender
@@ -126,7 +139,12 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               <option value="prefer-not-to-say">Prefer not to say</option>
             </select>
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
@@ -145,6 +163,8 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               onChange={handleInputChange}
               min="0"
               className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200"
+              inputMode="numeric"
+              autoComplete="off"
             />
           </div>
 
@@ -161,6 +181,8 @@ const JobApplicationForm = ({ isOpen, onClose }) => {
               onChange={handleInputChange}
               min="0"
               className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-200"
+              inputMode="numeric"
+              autoComplete="off"
             />
           </div>
 

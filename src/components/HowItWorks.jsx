@@ -4,9 +4,12 @@ import { Search, Users, Handshake } from "lucide-react"
 
 const StepCard = ({ step, index }) => {
   return (
-    <div className="text-center group animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-      <div className="relative mb-8">
-        <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto shadow-2xl shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2">
+    <div
+      className="text-center group animate-fade-in px-4 sm:px-6"
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
+      <div className="relative mb-8 mx-auto w-24 h-24 sm:w-28 sm:h-28">
+        <div className="w-full h-full bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2">
           <step.icon className="text-white" size={36} />
         </div>
         <div className="absolute -top-2 -right-2 w-8 h-8 bg-white border-4 border-emerald-500 rounded-full flex items-center justify-center font-bold text-emerald-600 text-sm shadow-lg">
@@ -14,11 +17,11 @@ const StepCard = ({ step, index }) => {
         </div>
       </div>
 
-      <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors">
+      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors">
         {step.title}
       </h3>
 
-      <p className="text-gray-600 leading-relaxed max-w-sm mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+      <p className="text-gray-600 leading-relaxed max-w-sm mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 text-sm sm:text-base">
         {step.description}
       </p>
     </div>
@@ -49,26 +52,26 @@ const HowItWorks = () => {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 sm:mb-16 px-2 sm:px-0">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             How It <span className="text-emerald-600">Works</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-xl sm:max-w-3xl mx-auto leading-relaxed">
             Our streamlined process makes it easy to find, connect, and partner with the right businesses for your
             needs.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 lg:gap-16">
           {steps.map((step, index) => (
             <StepCard key={step.number} step={step} index={index} />
           ))}
         </div>
 
         {/* Connection Lines */}
-        <div className="hidden md:block relative mt-16">
+        <div className="hidden md:block relative mt-12 sm:mt-16">
           <div className="absolute top-1/2 left-1/3 w-1/3 h-px bg-gradient-to-r from-emerald-300 to-emerald-500 transform -translate-y-1/2"></div>
           <div className="absolute top-1/2 right-1/3 w-1/3 h-px bg-gradient-to-r from-emerald-300 to-emerald-500 transform -translate-y-1/2"></div>
         </div>

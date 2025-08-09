@@ -9,8 +9,8 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
       <Icon size={24} className="text-emerald-600" />
     </div>
     <div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
+      <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">{title}</h3>
+      <p className="text-gray-600 text-sm md:text-base">{description}</p>
     </div>
   </div>
 )
@@ -19,18 +19,20 @@ const EnterpriseAIPage = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-8">
-      <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-lg rounded-2xl p-8 md:p-12 shadow-2xl shadow-emerald-500/10 animate-in fade-in zoom-in-90 duration-300 ease-out">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 px-4 sm:px-6 md:px-8">
+      <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-lg rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl shadow-emerald-500/10 animate-in fade-in zoom-in-90 duration-300 ease-out">
         <button
           onClick={() => navigate("/homepage")}
-          className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold mb-8 transition-colors group"
+          className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold mb-6 sm:mb-8 transition-colors group"
         >
           <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
           Back to Homepage
         </button>
 
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-6 text-center">Enterprise AI Solutions</h1>
-        <p className="text-gray-600 text-lg mb-12 text-center max-w-3xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 text-center">
+          Enterprise AI Solutions
+        </h1>
+        <p className="text-gray-600 text-base sm:text-lg mb-8 sm:mb-12 text-center max-w-3xl mx-auto">
           Unlock the full potential of your data with Avexra's advanced AI and Machine Learning capabilities, designed
           for enterprise-scale operations.
         </p>
@@ -38,11 +40,13 @@ const EnterpriseAIPage = () => {
         <img
           src="/placeholder.svg?height=400&width=800"
           alt="Enterprise AI"
-          className="w-full h-auto rounded-xl shadow-lg mb-12"
+          className="w-full h-auto rounded-xl shadow-lg mb-8 sm:mb-12"
         />
 
-        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Key Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
+          Key Features
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
           <FeatureCard
             icon={Brain}
             title="Predictive Analytics"
@@ -66,10 +70,10 @@ const EnterpriseAIPage = () => {
         </div>
 
         <div className="text-center">
-          <button className="group inline-flex items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-10 py-4 rounded-full font-semibold text-xl shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
+          <button className="group inline-flex items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-lg sm:text-xl shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
             Request a Demo
             <svg
-              className="ml-3 w-6 h-6 transition-transform duration-300 group-hover:translate-x-2"
+              className="ml-3 w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

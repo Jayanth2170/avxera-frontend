@@ -6,7 +6,7 @@ import { ArrowRight, Building2, Star } from "lucide-react"
 const BrandCard = ({ brand, index }) => {
   return (
     <div
-      className="flex-shrink-0 w-80 bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group animate-fade-in"
+      className="flex-shrink-0 min-w-[280px] w-80 bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:-translate-y-2 group animate-fade-in"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="p-6">
@@ -35,7 +35,7 @@ const BrandCard = ({ brand, index }) => {
 
         <p className="text-gray-700 mb-6 line-clamp-3">{brand.description}</p>
 
-        <button className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center group">
+        <button className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-transform duration-200 transform hover:scale-105 flex items-center justify-center group">
           View Profile
           <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
         </button>
@@ -45,8 +45,6 @@ const BrandCard = ({ brand, index }) => {
 }
 
 const FeaturedBrands = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all")
-
   const brands = [
     {
       name: "TechFlow Solutions",
@@ -97,7 +95,7 @@ const FeaturedBrands = () => {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 px-4 sm:px-0">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Featured <span className="text-emerald-600">Brands</span>
           </h2>
@@ -108,7 +106,11 @@ const FeaturedBrands = () => {
 
         {/* Horizontal Scroll Container */}
         <div className="relative">
-          <div className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide">
+          <div
+            className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide pl-4 sm:pl-0"
+            tabIndex={0} // allows keyboard scrolling on focus
+            aria-label="Featured brands"
+          >
             {brands.map((brand, index) => (
               <BrandCard key={brand.name} brand={brand} index={index} />
             ))}
@@ -119,7 +121,7 @@ const FeaturedBrands = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+          <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-transform duration-200 transform hover:scale-105">
             View All Brands
           </button>
         </div>

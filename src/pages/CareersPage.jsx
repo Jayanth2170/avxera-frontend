@@ -54,8 +54,8 @@ const CareersPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-8">
-      <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-lg rounded-2xl p-8 md:p-12 shadow-2xl shadow-emerald-500/10 animate-in fade-in zoom-in-90 duration-300 ease-out">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-8 md:px-12">
+      <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-lg rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl shadow-emerald-500/10 animate-in fade-in zoom-in-90 duration-300 ease-out">
         <button
           onClick={() => navigate("/homepage")}
           className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold mb-8 transition-colors group"
@@ -64,27 +64,26 @@ const CareersPage = () => {
           Back to Homepage
         </button>
 
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-6 text-center">Careers at Avexra</h1>
-        <p className="text-gray-600 text-lg mb-12 text-center max-w-3xl mx-auto">
-          Join a team that's shaping the future of technology and making a real impact. Discover your next opportunity
-          with us.
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 text-center">Careers at Avexra</h1>
+        <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-3xl mx-auto">
+          Join a team that's shaping the future of technology and making a real impact. Discover your next opportunity with us.
         </p>
 
-        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Core Values</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">Our Core Values</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16">
           {values.map((value, index) => (
             <ValueCard key={index} value={value} />
           ))}
         </div>
 
-        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Current Openings</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">Current Openings</h2>
         <div className="space-y-6 mb-12">
           {jobOpenings.map((job, index) => (
             <div
               key={index}
               className="flex flex-col md:flex-row justify-between items-center bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-all duration-200"
             >
-              <div>
+              <div className="text-center md:text-left">
                 <h3 className="text-xl font-semibold text-gray-900">{job.title}</h3>
                 <p className="text-gray-600 text-sm">
                   {job.department} &bull; {job.location} &bull; {job.type}
@@ -103,7 +102,7 @@ const CareersPage = () => {
         <div className="text-center">
           <Link
             to="/apply"
-            className="group inline-flex items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-10 py-4 rounded-full font-semibold text-xl shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
+            className="group inline-flex items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
           >
             View All Openings
             <svg

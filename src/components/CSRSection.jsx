@@ -14,7 +14,7 @@ const CSRActivityCard = ({ activity, index }) => {
 
   return (
     <div
-      className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50/50 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10 animate-in fade-in-from-bottom-8"
+      className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50/50 text-center transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10 animate-in fade-in-from-bottom-8"
       style={{ animationDelay: `${index * 0.15}s` }}
     >
       <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
@@ -37,7 +37,7 @@ const TestimonialSlider = () => {
     },
     {
       quote: "Their commitment to education has transformed countless lives. We are grateful for their partnership.",
-      author: "Dr. Rohan Patel", // Updated name
+      author: "Dr. Rohan Patel",
       role: "Non-profit Director",
     },
     {
@@ -81,6 +81,7 @@ const TestimonialSlider = () => {
             className={`w-3 h-3 rounded-full transition-all duration-200 ${
               index === currentIndex ? "bg-emerald-500 scale-125" : "bg-gray-400 hover:bg-emerald-500/50"
             }`}
+            aria-label={`Show testimonial ${index + 1}`}
           />
         ))}
       </div>
@@ -112,12 +113,12 @@ const CSRSection = () => {
 
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-16 px-4 sm:px-0">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
             Corporate Social <span className="text-emerald-500">Responsibility</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
             Committed to making a positive impact on the planet and in our communities.
           </p>
         </div>

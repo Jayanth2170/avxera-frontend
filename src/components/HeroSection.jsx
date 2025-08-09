@@ -22,6 +22,12 @@ const FloatingBrand = ({ icon: Icon, delay = 0, className = "" }) => {
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("")
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Implement search action here or navigate
+    alert(`Searching for: ${searchQuery}`)
+  }
+
   return (
     <section className="relative min-h-[80vh] bg-gradient-to-br from-gray-50 via-white to-emerald-50/30 flex items-center justify-center overflow-hidden">
       {/* Floating Brand Elements */}
@@ -55,7 +61,13 @@ const HeroSection = () => {
         </div>
 
         {/* Hero Search Bar */}
-        <div className="mb-12 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <form
+          onSubmit={handleSubmit}
+          className="mb-12 animate-fade-in"
+          style={{ animationDelay: "0.2s" }}
+          role="search"
+          aria-label="Search brands, services, or partnerships"
+        >
           <div className="relative max-w-2xl mx-auto group">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative bg-white border-2 border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:border-emerald-300">
@@ -65,19 +77,24 @@ const HeroSection = () => {
                   size={24}
                 />
                 <input
-                  type="text"
+                  type="search"
                   placeholder="Search for brands, services, or partnerships..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 text-lg text-gray-900 placeholder-gray-500 outline-none bg-transparent"
+                  aria-label="Search input"
                 />
-                <button className="ml-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-2 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                <button
+                  type="submit"
+                  aria-label="Search"
+                  className="ml-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-2 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                >
                   Search
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
 
         {/* CTA Buttons */}
         <div
@@ -98,10 +115,14 @@ const HeroSection = () => {
         <div className="mt-16 animate-fade-in" style={{ animationDelay: "0.6s" }}>
           <p className="text-gray-500 text-sm font-medium mb-6">Trusted by industry leaders</p>
           <div className="flex justify-center items-center space-x-12 opacity-60">
-            <div className="text-2xl font-bold text-gray-400">500+</div>
-            <div className="text-2xl font-bold text-gray-400">Brands</div>
-            <div className="text-2xl font-bold text-gray-400">50K+</div>
-            <div className="text-2xl font-bold text-gray-400">Connections</div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-400">500+</div>
+              <div className="text-sm text-gray-400">Brands</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-400">50K+</div>
+              <div className="text-sm text-gray-400">Connections</div>
+            </div>
           </div>
         </div>
       </div>

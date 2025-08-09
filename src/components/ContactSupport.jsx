@@ -21,12 +21,12 @@ const ContactSupport = () => {
 
   return (
     <section id="contact" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-16 px-4 sm:px-0">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
             Contact & <span className="text-emerald-500">Support</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
             We're here to help. Reach out to us for any inquiries or support.
           </p>
         </div>
@@ -37,27 +37,25 @@ const ContactSupport = () => {
             className="bg-white rounded-2xl p-8 shadow-xl border border-gray-50/50 animate-in fade-in-from-bottom-8"
             style={{ animationDelay: "0.4s" }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h3>
-            <div className="space-y-6 mb-8">
-              <div className="flex items-center text-gray-600 text-lg">
-                <MapPin size={24} className="mr-4 text-emerald-500" />
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+            <div className="space-y-6 mb-8 text-base sm:text-lg text-gray-600">
+              <div className="flex items-center">
+                <MapPin size={24} className="mr-4 text-emerald-500 flex-shrink-0" />
                 <span>123 Innovation Drive, Suite 400, Tech City, CA 90210, USA</span>
               </div>
-              <div className="flex items-center text-gray-600 text-lg">
-                <Mail size={24} className="mr-4 text-emerald-500" />
-                <a href="mailto:info@avexra.com" className="hover:text-emerald-500 transition-colors">
+              <div className="flex items-center">
+                <Mail size={24} className="mr-4 text-emerald-500 flex-shrink-0" />
+                <a href="mailto:info@avexra.com" className="hover:text-emerald-500 transition-colors truncate">
                   info@avexra.com
                 </a>
               </div>
-              <div className="flex items-center text-gray-600 text-lg">
-                <Phone size={24} className="mr-4 text-emerald-500" />
+              <div className="flex items-center">
+                <Phone size={24} className="mr-4 text-emerald-500 flex-shrink-0" />
                 <a href="tel:+15551234567" className="hover:text-emerald-500 transition-colors">
                   +1 (555) 123-4567
                 </a>
               </div>
             </div>
-            
-
           </div>
 
           {/* Newsletter & Social */}
@@ -65,21 +63,22 @@ const ContactSupport = () => {
             className="bg-white rounded-2xl p-8 shadow-xl border border-gray-50/50 animate-in fade-in-from-bottom-8"
             style={{ animationDelay: "0.6s" }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Stay Connected</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Stay Connected</h3>
 
             {/* Social Media */}
             <div className="mb-10">
               <p className="text-gray-600 text-lg mb-4">Follow us on social media:</p>
-              <div className="flex space-x-6">
+              <div className="flex space-x-4 sm:space-x-6">
                 {socialIcons.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-14 h-14 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:bg-emerald-500`}
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:bg-emerald-500"
+                    aria-label={`Follow us on ${social.href.split(".")[1]}`}
                   >
-                    <social.icon size={28} />
+                    <social.icon size={24} />
                   </a>
                 ))}
               </div>

@@ -62,6 +62,8 @@ const FormInput = ({ icon: Icon, type = "text", placeholder, value, onChange, na
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="text-gray-400 hover:text-emerald-500 transition-colors ml-2"
+              tabIndex={-1}
+              aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -207,7 +209,7 @@ const Signup = () => {
     formData.password === formData.confirmPassword
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col lg:flex-row">
       {/* Left Side - Hero Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-emerald-50 to-white">
         {/* Background Effects */}
@@ -221,7 +223,7 @@ const Signup = () => {
         <FloatingLine delay={2} className="bottom-1/4 left-1/3 rotate-45" />
 
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col justify-center items-start w-full px-16 py-12">
+        <div className="relative z-10 flex flex-col justify-center items-start w-full px-8 md:px-16 py-12">
           <div className="max-w-lg">
             {/* Company Logo */}
             <div className="flex items-center mb-12">
@@ -232,18 +234,18 @@ const Signup = () => {
             </div>
 
             <div className="space-y-6">
-              <h2 className="text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                 Join thousands of
                 <span className="block text-emerald-600 mt-2">successful businesses</span>
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
                 Create your account and unlock powerful tools designed for modern enterprises. Start your journey with
                 industry-leading security and performance.
               </p>
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-12 flex items-center space-x-8 text-sm text-gray-500">
+            <div className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></div>
                 <span>SOC 2 Compliant</span>
@@ -262,10 +264,10 @@ const Signup = () => {
       </div>
 
       {/* Right Side - Signup Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8">
         <div className="w-full max-w-md">
           {/* Glassmorphism Card */}
-          <div className="bg-white/85 backdrop-blur-[20px] border border-emerald-200/50 rounded-2xl p-10 shadow-2xl shadow-emerald-500/10">
+          <div className="bg-white/85 backdrop-blur-[20px] border border-emerald-200/50 rounded-2xl p-6 sm:p-10 shadow-2xl shadow-emerald-500/10">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Create your account</h3>
               <p className="text-gray-600 font-light">Get started with your enterprise platform</p>
@@ -351,7 +353,8 @@ const Signup = () => {
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              {/* Make social buttons responsive grid */}
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <SocialButton icon={Building2}>Google</SocialButton>
                 <SocialButton icon={Building2}>LinkedIn</SocialButton>
               </div>

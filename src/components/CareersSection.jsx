@@ -1,6 +1,6 @@
 "use client"
 import { Lightbulb, Users, Heart, BookOpen } from "lucide-react"
-import { Link } from "react-router-dom" // Import Link
+import { Link } from "react-router-dom"
 
 const ValueCard = ({ value, index }) => {
   const icons = {
@@ -26,8 +26,6 @@ const ValueCard = ({ value, index }) => {
 }
 
 const CareersSection = () => {
-  // Removed isFormOpen state as it's no longer a modal
-
   const values = [
     {
       title: "Innovation",
@@ -48,18 +46,18 @@ const CareersSection = () => {
   ]
 
   return (
-    <section id="careers" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
+    <section id="careers" className="py-16 sm:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 animate-in fade-in-from-bottom-8">
             Careers at <span className="text-emerald-500">Avexra</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto animate-in fade-in" style={{ animationDelay: "0.2s" }}>
             Join a team that's shaping the future of technology and making a real impact.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {values.map((value, index) => (
             <ValueCard key={index} value={value} index={index} />
           ))}
@@ -67,12 +65,12 @@ const CareersSection = () => {
 
         <div className="text-center animate-in fade-in" style={{ animationDelay: "0.8s" }}>
           <Link
-            to="/apply" // Link to the new application page
-            className="group inline-flex items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-10 py-4 rounded-full font-semibold text-xl shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
+            to="/apply"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-lg sm:text-xl shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
           >
             Join Our Team
             <svg
-              className="ml-3 w-6 h-6 transition-transform duration-300 group-hover:translate-x-2"
+              className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

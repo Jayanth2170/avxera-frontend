@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight, Trophy, Target, Zap, Users } from "lucide-react"
 
 const AchievementCard = ({ achievement, isActive }) => {
@@ -15,9 +15,10 @@ const AchievementCard = ({ achievement, isActive }) => {
 
   return (
     <div
-      className={`flex-shrink-0 w-80 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-500 transform ${
+      className={`flex-shrink-0 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-500 transform ${
         isActive ? "scale-105 shadow-2xl shadow-emerald-500/20" : "scale-95 opacity-70"
       }`}
+      style={{ minWidth: "280px", maxWidth: "320px", width: "80vw" /* responsive width */ }}
     >
       <div className="flex items-center mb-4">
         <div
@@ -50,6 +51,8 @@ const AchievementCard = ({ achievement, isActive }) => {
 const AchievementsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [cardWidth, setCardWidth] = useState(320) // default width for desktop
+  const containerRef = useRef(null)
 
   const achievements = [
     {
@@ -90,6 +93,25 @@ const AchievementsCarousel = () => {
     },
   ]
 
+  // Dynamically update card width on resize
+  useEffect(() => {
+    function updateCardWidth() {
+      if (containerRef.current) {
+        // Get the width of the first card (or approximate width)
+        const card = containerRef.current.querySelector("div > div")
+        if (card) {
+          const width = card.getBoundingClientRect().width
+          setCardWidth(width)
+        }
+      }
+    }
+
+    updateCardWidth()
+    window.addEventListener("resize", updateCardWidth)
+    return () => window.removeEventListener("resize", updateCardWidth)
+  }, [])
+
+  // Auto play carousel
   useEffect(() => {
     if (!isAutoPlaying) return
 
@@ -112,40 +134,44 @@ const AchievementsCarousel = () => {
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Recent Achievements</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Celebrating your milestones and recognizing exceptional contributions
           </p>
         </div>
 
-        <div className="relative">
-          {/* Carousel Container */}
-          <div className="flex items-center justify-center">
+        <div className="relative" ref={containerRef}>
+          <div className="flex items-center justify-center relative">
+            {/* Prev button */}
             <button
+              aria-label="Previous achievement"
               onClick={goToPrevious}
-              className="absolute left-0 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-emerald-600 hover:shadow-xl transition-all duration-200 transform hover:scale-110"
+              className="absolute left-0 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-emerald-600 hover:shadow-xl transition-all duration-200 transform hover:scale-110"
             >
               <ChevronLeft size={20} />
             </button>
 
+            {/* Carousel viewport */}
             <div className="overflow-hidden w-full max-w-4xl">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentIndex * 320}px)` }}
+                style={{ transform: `translateX(-${currentIndex * cardWidth}px)` }}
               >
                 {achievements.map((achievement, index) => (
-                  <div key={index} className="px-2">
+                  <div key={index} className="px-2 flex-shrink-0" style={{ width: cardWidth }}>
                     <AchievementCard achievement={achievement} isActive={index === currentIndex} />
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Next button */}
             <button
+              aria-label="Next achievement"
               onClick={goToNext}
-              className="absolute right-0 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-emerald-600 hover:shadow-xl transition-all duration-200 transform hover:scale-110"
+              className="absolute right-0 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-emerald-600 hover:shadow-xl transition-all duration-200 transform hover:scale-110"
             >
               <ChevronRight size={20} />
             </button>
@@ -163,6 +189,7 @@ const AchievementsCarousel = () => {
                 className={`w-3 h-3 rounded-full transition-all duration-200 ${
                   index === currentIndex ? "bg-emerald-500 scale-125" : "bg-gray-300 hover:bg-emerald-300"
                 }`}
+                aria-label={`Go to achievement ${index + 1}`}
               />
             ))}
           </div>

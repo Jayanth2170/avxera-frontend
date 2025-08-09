@@ -47,7 +47,11 @@ const GlobalPresence = () => {
     },
   ]
 
-  const [hoveredOfficeName, setHoveredOfficeName] = useState(null)
+  const [activeOffice, setActiveOffice] = useState(null)
+
+  const toggleOffice = (name) => {
+    setActiveOffice(activeOffice === name ? null : name)
+  }
 
   return (
     <section id="global" className="py-20 bg-gray-50">
@@ -64,7 +68,6 @@ const GlobalPresence = () => {
           </p>
         </div>
 
-        {/* Interactive World Map */}
         <div
           className="relative w-full h-[500px] bg-white rounded-2xl shadow-xl border border-gray-50/50 overflow-hidden mb-16 animate-in fade-in"
           style={{ animationDelay: "0.4s" }}
@@ -73,23 +76,31 @@ const GlobalPresence = () => {
             src="/images/map.png"
             alt="World Map"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
 
           {officeLocations.map((office, index) => (
             <div
               key={index}
-              className="absolute w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center cursor-pointer animate-pulse"
+              role="button"
+              tabIndex={0}
+              aria-label={`View details for ${office.name}`}
+              onClick={() => toggleOffice(office.name)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") toggleOffice(office.name)
+              }}
+              className="absolute w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center cursor-pointer animate-pulse focus:outline-none focus:ring-2 focus:ring-emerald-500"
               style={{
                 left: `${((office.lng + 180) / 360) * 100}%`,
                 top: `${((90 - office.lat) / 180) * 100}%`,
                 transform: "translate(-50%, -50%)",
                 animationDelay: `${index * 0.2}s`,
               }}
-              onMouseEnter={() => setHoveredOfficeName(office.name)}
-              onMouseLeave={() => setHoveredOfficeName(null)}
+              onMouseEnter={() => setActiveOffice(office.name)}
+              onMouseLeave={() => setActiveOffice(null)}
             >
               <MapPin size={16} className="text-white" />
-              {hoveredOfficeName === office.name && (
+              {(activeOffice === office.name) && (
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 p-4 bg-white rounded-lg shadow-xl border border-gray-50 z-20 w-64 animate-in fade-in">
                   <h4 className="font-semibold text-emerald-600 mb-2">{office.name}</h4>
 
